@@ -14,8 +14,9 @@
 ## 📂 Project Structure  
 ```bash
 Backendly/
-├─ http-server/       # Node.js (http module)
-├─ express-server/    # Express.js basics
+├─ http-server/             #http.js   
+├─ express-server/          #express.js
+├─ notes-application/       #Server.js   
 ├─ package.json
 └─ .gitignore
 
