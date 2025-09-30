@@ -1,8 +1,10 @@
 let express = require('express');
+let connectToDb = require('../src/db/db')
 let server = express();
 
-server.use(express.json());
 
+server.use(express.json());
+connectToDb()
 let notes = [];
 
 // msg
