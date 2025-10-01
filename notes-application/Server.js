@@ -1,11 +1,16 @@
 let express = require('express');
 let connectToDb = require('../src/db/db')
+let noteModel = require("../src/models/note.model")
+
+//Server created
 let server = express();
 
-
+// middleware
 server.use(express.json());
+
+//Db Connection
 connectToDb()
-let notes = [];
+
 
 // msg
 server.get('/', (req, res) => {
@@ -13,45 +18,62 @@ server.get('/', (req, res) => {
 })
 
 // add note
-server.post('/notes', (req, res) => {
-    notes.push(req.body);
-    res.json({
-        message: 'Note added successfully',
+server.post('/notes', async (req, res) => {
 
+    const { title, content } = req.body
+    console.log(req.body);
+
+
+    await noteModel.create({
+        title, content
     })
 
+    res.json({
+        message: "Note added Successfully! "
+    })
 })
 
 // get all notes
-server.get('/notes', (req, res) => {
-    res.json(notes);
-})
-
-// delete note
-server.delete('/notes/:index', (req, res) => {
-    let index = req.params.index;
-    delete notes[index];
-
+server.get('/notes', async (req, res) => {
+    const note = await noteModel.find()
     res.json({
-        message: 'Note deleted successfully'
+
+        message: 'Notes Fetch Successfully',
+        note
+
     })
 })
 
-// update note
-server.patch('/notes/:index', (req, res) => {
-    let index = req.params.index;
-    let title = req.body.title;
-    let description = req.body.description;
+// Delete notes
+server.delete('/notes/:id', async (req, res) => {
+    let id = req.params.id
 
-    notes[index].title = title;
-    notes[index].description = description;
-
+    await noteModel.findByIdAndDelete({
+        _id: id
+    })
     res.json({
-        message: 'Note updated successfully'
+        message: "Note Deleted Successfully"
     })
 
 })
 
+// Update notes
+server.patch('/notes/:id', async (req, res) => {
+    let id = req.params.id
+    const { title, content } = req.body
+    await noteModel.findByIdAndUpdate({
+        _id: id
+    }, {
+        title: title,
+        content: content
+    })
+
+    res.json({
+        message: "Note Updated Successfully"
+    })
+})
+
+// Server Starting
 server.listen(3000, () => {
     console.log('Server is running on port 3000');
 
