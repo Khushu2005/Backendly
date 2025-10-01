@@ -14,11 +14,20 @@
 ## 📂 Project Structure  
 ```bash
 Backendly/
-├─ http-server/             #http.js   
-├─ express-server/          #express.js
-├─ notes-application/       #Server.js   
+├─ express-server/
+│ └─ express.js
+├─ http-server/
+│ └─ http.js
+├─ notes-application/
+│ ├─ src/
+│ │ ├─ db/
+│ │ │ └─ db.js
+│ │ └─ models/
+│ │ └─ note.model.js
+│ └─ Server.js
+├─ .gitignore
+├─ package-lock.json
 ├─ package.json
-└─ .gitignore
-
+└─ README.md
 
 
