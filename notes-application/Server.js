@@ -1,6 +1,6 @@
 let express = require('express');
-let connectToDb = require('../src/db/db')
-let noteModel = require("../src/models/note.model")
+let connectToDb = require('../notes-application/src/db/db')
+let noteModel = require("../notes-application/src/models/note.model")
 
 //Server created
 let server = express();
