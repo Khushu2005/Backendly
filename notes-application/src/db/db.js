@@ -1,13 +1,13 @@
-let mongoose = require('mongoose')
+// let mongoose = require('mongoose')
 
-function connectToDb(){
+// function connectToDb(){
 
-    mongoose.connect('mongodb-uri').then(
-        ()=>{
-            console.log('Connected To DB');
+//     mongoose.connect('mongodb-uri').then(
+//         ()=>{
+//             console.log('Connected To DB');
             
-        }
-    )
-}
+//         }
+//     )
+// }
 
-module.exports = connectToDb;
+// module.exports = connectToDb;
